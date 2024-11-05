@@ -74,6 +74,7 @@
             color="primary"
             unelevated
             :to="prevCourse"
+            @click="movePage(prevCourse.path)"
           />
           <q-btn
             label="쿼리 추가"
@@ -88,6 +89,7 @@
             color="primary"
             unelevated
             :to="nextCourse"
+            @click="movePage(nextCourse.path)"
           />
         </ClientOnly>
       </template>
@@ -116,6 +118,10 @@ definePageMeta({
 
 const memo = ref('');
 const completed = ref(false);
+
+const movePage = async (path: string) => {
+  await navigateTo(path);
+};
 </script>
 
 <style scoped></style>
