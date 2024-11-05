@@ -4,9 +4,13 @@
       <q-toolbar>
         <q-toolbar-title>Vue Master Course</q-toolbar-title>
         <q-separator dark vertical />
-        <q-btn stretch flat label="Home" to="/" />
+        <NuxtLink v-slot="{ navigate }" custom to="/">
+          <q-btn stretch flat label="Home" no-caps @click="navigate" />
+        </NuxtLink>
         <q-separator dark vertical />
-        <q-btn stretch flat label="About" to="/about" />
+        <NuxtLink v-slot="{ navigate }" custom to="/about">
+          <q-btn stretch flat label="Home" no-caps @click="navigate" />
+        </NuxtLink>
       </q-toolbar>
     </q-header>
     <q-page-container :style="pageContainerStyle">
