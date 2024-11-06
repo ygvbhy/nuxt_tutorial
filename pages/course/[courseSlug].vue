@@ -67,6 +67,9 @@
         />
       </q-form>
       <template #footer>
+        <!-- Hydration 오류가 발생 함으로 인해 해당 코드들을 client only 로 감싸서 막아준다. -->
+        <!-- 아래의 코드를 보면 new Date() 를 하기 때문에 서버에서 보낸 html 코드와 client 의 html 코드가 달라서 나는 오류임 -->
+        <!-- hydration 오류가 출력이 되면 최대한 해결을 하는게 좋다. -->
         <ClientOnly>
           <q-btn
             v-if="prevCourse"
