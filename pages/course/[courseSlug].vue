@@ -54,7 +54,7 @@
           unelevated
           :outline="completed ? false : true"
           :icon="completed ? 'check' : undefined"
-          @click="completed = !completed"
+          @click="toggleComplete"
         />
         <q-input
           v-model="memo"
@@ -135,9 +135,11 @@ const movePage = async (path: string) => {
   await navigateTo(path);
 };
 
-// const toggleComplete = () => {
-//   $fetch('/api/error');
-// };
+const toggleComplete = () => {
+  showError('에러가 발생했습니다.');
+  completed.value = !completed.value;
+  // $fetch('/api/error');
+};
 </script>
 
 <style scoped></style>
