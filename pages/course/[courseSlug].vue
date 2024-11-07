@@ -106,6 +106,15 @@ const courseSlug = route.params.courseSlug as string;
 const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 console.log('[courseSlug].vue 컴포넌트 setup hooks');
 
+if (!course) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Course Not Found',
+    // server 와 client 모두 오류뿜뿜 옵션
+    fatal: true,
+  });
+}
+
 // const title = ref('');
 // definePageMeta 에 정의 된 내용은 컴파일 될때 최상단으로 이동하여 선언 된다.
 // 따라서 위의 ref 등을 사용하여 선언 한 변수가 meta 안에 들어갈 경우 오류를 뿜는다.
@@ -125,6 +134,10 @@ const completed = ref(false);
 const movePage = async (path: string) => {
   await navigateTo(path);
 };
+
+// const toggleComplete = () => {
+//   $fetch('/api/error');
+// };
 </script>
 
 <style scoped></style>
