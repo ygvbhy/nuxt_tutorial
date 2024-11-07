@@ -106,14 +106,15 @@ const courseSlug = route.params.courseSlug as string;
 const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 console.log('[courseSlug].vue 컴포넌트 setup hooks');
 
-if (!course) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Course Not Found',
-    // server 와 client 모두 오류뿜뿜 옵션
-    // fatal: true,
-  });
-}
+// vue 의 setup 함수 내에 있기떄문에 컴포넌트를 불러 올때 검사하는 로직
+// if (!course) {
+//   throw createError({
+//     statusCode: 404,
+//     statusMessage: 'Course Not Found',
+//     // server 와 client 모두 오류뿜뿜 옵션
+//     // fatal: true,
+//   });
+// }
 
 // const title = ref('');
 // definePageMeta 에 정의 된 내용은 컴파일 될때 최상단으로 이동하여 선언 된다.
@@ -126,6 +127,20 @@ definePageMeta({
   // title: title.value,
   // keepalive: true, // 부모 페이지의 머무르는 중엔 내부에 선언된 데이터를 유지 해줌
   alias: ['/lecture/:courseSlug'], // 이 주소로 들어와도 라우팅에서 설정한 경로의 페이지가 로딩 됨
+  // 이건 setup 함수 밖의 최상단에 뽑혀서 선언 되기 때문에 페이지의 렌더링 이전에 검사를 시작함.
+  validate: (route) => {
+    const courseSlug = route.params.courseSlug as string;
+    const { course } = useCourse(courseSlug);
+
+    if (!course) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Course Not Found',
+      });
+    }
+
+    return true;
+  },
 });
 
 const memo = ref('');
