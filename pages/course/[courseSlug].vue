@@ -128,18 +128,21 @@ definePageMeta({
   // keepalive: true, // 부모 페이지의 머무르는 중엔 내부에 선언된 데이터를 유지 해줌
   alias: ['/lecture/:courseSlug'], // 이 주소로 들어와도 라우팅에서 설정한 경로의 페이지가 로딩 됨
   // 이건 setup 함수 밖의 최상단에 뽑혀서 선언 되기 때문에 페이지의 렌더링 이전에 검사를 시작함.
-  validate: (route) => {
+  // validate: (route) => {
+  middleware: (route) => {
     const courseSlug = route.params.courseSlug as string;
     const { course } = useCourse(courseSlug);
 
     if (!course) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: 'Course Not Found',
-      });
+      return abortNavigation(
+        createError({
+          statusCode: 404,
+          statusMessage: 'Course Not Found',
+        }),
+      );
     }
 
-    return true;
+    // return true;
   },
 });
 
