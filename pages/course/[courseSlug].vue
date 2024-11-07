@@ -111,7 +111,7 @@ if (!course) {
     statusCode: 404,
     statusMessage: 'Course Not Found',
     // server 와 client 모두 오류뿜뿜 옵션
-    fatal: true,
+    // fatal: true,
   });
 }
 
@@ -124,7 +124,7 @@ definePageMeta({
   key: (route) => route.fullPath,
   title: 'My home page',
   // title: title.value,
-  keepalive: true, // 부모 페이지의 머무르는 중엔 내부에 선언된 데이터를 유지 해줌
+  // keepalive: true, // 부모 페이지의 머무르는 중엔 내부에 선언된 데이터를 유지 해줌
   alias: ['/lecture/:courseSlug'], // 이 주소로 들어와도 라우팅에서 설정한 경로의 페이지가 로딩 됨
 });
 
