@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware(() => {
-  const { isAuthenticated } = useAuthUser();
+  const isAuthenticated = useAuthenticated();
 
   if (isAuthenticated) {
     if (process.server) return navigateTo('/');
