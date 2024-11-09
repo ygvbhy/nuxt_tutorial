@@ -10,7 +10,18 @@ export default defineNuxtConfig({
     'nuxt-quasar-ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    locales: ['en', 'ko'], // URL 경로 접두사에 사용됨
+    defaultLocale: 'ko', // Nuxt 페이지 및 라우팅을 위한 프로젝트의 기본 로케일
+    vueI18n: './i18n.config.ts',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root', // recommended
+    },
+  },
   quasar: {
     plugins: ['Notify'],
     config: {
@@ -22,12 +33,12 @@ export default defineNuxtConfig({
   // 내부 함수는 Auto Imports 를 지원 하는데 외부 라이브러리는 지원하지 않는다.
   // 그래서 아래와 같이 선언 하여 Auto Imports 를 지원하게 만들어 줄 수 있다.
   imports: {
-    presets: [
-      {
-        from: 'vue-i18n',
-        imports: ['useI18n'],
-      },
-    ],
+    //   presets: [
+    //     {
+    //       from: 'vue-i18n',
+    //       imports: ['useI18n'],
+    //     },
+    //   ],
   },
   app: {
     head: {

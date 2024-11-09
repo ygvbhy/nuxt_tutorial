@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/i18n": "^9.0.0-rc.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
@@ -34,7 +35,6 @@
     "nuxt-quasar-ui": "^2.1.6",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3",
-    "vue-i18n": "^10.0.4",
     "vue-tsc": "^2.1.10"
   },
   "overrides": {
