@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password: _password, ...userWithoutPassword } = userWithPassword;
 
-  setCookie(event, '__user', JSON.stringify(userWithPassword));
+  setCookie(event, '__user', JSON.stringify(userWithoutPassword));
 
   return {
     user: userWithoutPassword,
