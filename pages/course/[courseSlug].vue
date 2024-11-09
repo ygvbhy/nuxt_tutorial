@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!-- <Head>
+      <Title>{{ title }}</Title>
+      <Meta name="description" :content="description" />
+    </Head> -->
     <AppCard>
       <template #header>
         <div class="text-h5 text-weight-medium">{{ course?.title }}</div>
@@ -105,6 +109,14 @@ const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
 const { course, prevCourse, nextCourse } = await useCourse(courseSlug);
 console.log('[courseSlug].vue 컴포넌트 setup hooks');
+
+// const title = computed(() => course?.title);
+// const description = computed(() => course?.content);
+
+useSeoMeta({
+  title: () => course?.title || '',
+  description: () => course?.content || '',
+});
 
 // vue 의 setup 함수 내에 있기떄문에 컴포넌트를 불러 올때 검사하는 로직
 // if (!course) {
