@@ -103,7 +103,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
-const { course, prevCourse, nextCourse } = useCourse(courseSlug);
+const { course, prevCourse, nextCourse } = await useCourse(courseSlug);
 console.log('[courseSlug].vue 컴포넌트 setup hooks');
 
 // vue 의 setup 함수 내에 있기떄문에 컴포넌트를 불러 올때 검사하는 로직
@@ -129,9 +129,9 @@ definePageMeta({
   alias: ['/lecture/:courseSlug'], // 이 주소로 들어와도 라우팅에서 설정한 경로의 페이지가 로딩 됨
   // 이건 setup 함수 밖의 최상단에 뽑혀서 선언 되기 때문에 페이지의 렌더링 이전에 검사를 시작함.
   // validate: (route) => {
-  middleware: (route) => {
+  middleware: async (route) => {
     const courseSlug = route.params.courseSlug as string;
-    const { course } = useCourse(courseSlug);
+    const { course } = await useCourse(courseSlug);
 
     if (!course) {
       return abortNavigation(
