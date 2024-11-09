@@ -37,6 +37,6 @@ export default defineEventHandler(async (event) => {
   setCookie(event, '__user', JSON.stringify(userWithPassword));
 
   return {
-    user: userWithPassword,
+    user: userWithoutPassword,
   };
 });
