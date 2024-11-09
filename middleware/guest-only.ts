@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(() => {
-  const isAuthenticated = useAuthenticated().value;
+  const { isAuthenticated } = storeToRefs(useAuthStore());
 
-  if (isAuthenticated) {
+  if (isAuthenticated.value) {
     if (process.server) return navigateTo('/');
     // 탐색을 취소함
     return abortNavigation();

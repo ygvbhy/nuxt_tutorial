@@ -26,7 +26,8 @@ const emit = defineEmits<{
 }>();
 // const emit = defineEmits(['success']);
 
-const { signIn } = useAuth();
+const authStore = useAuthStore();
+const { signIn } = authStore;
 
 const form = ref({
   email: '',
