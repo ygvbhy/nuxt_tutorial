@@ -52,4 +52,13 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // 초기 환경 변수 설정.
+  // env 파일에 같은 이름으로 정의 시 env 의 내용으로 최신화 됨.
+  runtimeConfig: {
+    authCookieName: '__user',
+    jwtSecretKey: 'superKey',
+    public: {
+      clientConfigValue: 'Test',
+    },
+  },
 });

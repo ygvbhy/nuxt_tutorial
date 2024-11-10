@@ -1,6 +1,7 @@
 import type { H3Event } from 'h3';
 export function getUserFromEvent(event: H3Event) {
-  const userJsonString = getCookie(event, '__user');
+  const config = useRuntimeConfig();
+  const userJsonString = getCookie(event, config.authCookieName);
 
   if (!userJsonString) {
     return null;
